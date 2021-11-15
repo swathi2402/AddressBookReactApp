@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Link, useParams  } from 'react-router-dom';
 import './form.scss';
 import logo from '../../assets/logo.png';
 import CancelButton from '../../assets/cancel.png'
-import { Link } from 'react-router-dom';
 import AddressBookService from "../../service/AddressBook-service";
 
 const Form = (props) => {
@@ -33,8 +33,31 @@ const Form = (props) => {
 
     const [formValue, setForm] = useState(initialValue);
     const [displayMeassage, setDisplayMessage] = useState("");
+    const params = useParams();
 
     const addressbookService = new AddressBookService();
+
+    useEffect(() => {
+        if (params.id) {
+            getDataById(params.id);
+        }
+    }, []);
+
+    const getDataById = (id) => {
+        addressbookService.getContact(id).then((data) => {
+            console.log("Data is ", data.data);
+            let object = data.data;
+            setData(object);
+        }).catch((error) => {
+            console.log("Error is ", error);
+        });
+    };
+
+    const setData = (object) => {
+        setForm({
+            ...formValue, ...object, isUpdate: true, 
+        });
+    };
 
     const changeValue = (event) => {
         setForm({ ...formValue, [event.target.name]: event.target.value })

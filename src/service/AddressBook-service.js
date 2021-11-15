@@ -13,6 +13,10 @@ export default class AddressBookService {
         return AxiosService.getService(`${this.baseUrl}AddressBook`);
     }
 
+    getContact(id) {
+        return AxiosService.getService(`${this.baseUrl}AddressBook/${id}`);
+    }
+
     deleteContact(id) {
         return AxiosService.deleteService(`${this.baseUrl}AddressBook/${id}`);
     }
