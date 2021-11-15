@@ -3,6 +3,7 @@ import './form.scss';
 import logo from '../../assets/logo.png';
 import CancelButton from '../../assets/cancel.png'
 import { Link } from 'react-router-dom';
+import AddressBookService from "../../service/AddressBook-service";
 
 const Form = (props) => {
     let initialValue = {
@@ -15,7 +16,7 @@ const Form = (props) => {
         ],
         city: '',
         state: '',
-        addess: '',
+        address: '',
         zip: '',
         phoneNumber: '',
         id: '',
@@ -24,13 +25,14 @@ const Form = (props) => {
             name: '',
             city: '',
             state: '',
-            addess: '',
+            address: '',
             zip: '',
             phoneNumber: ''
         }
     }
 
     const [formValue, setForm] = useState(initialValue);
+    const addressbookService = new AddressBookService();
 
     const changeValue = (event) => {
         setForm({ ...formValue, [event.target.name]: event.target.value })
@@ -42,7 +44,7 @@ const Form = (props) => {
             name: '',
             city: '',
             state: '',
-            addess: '',
+            address: '',
             zip: '',
             phoneNumber: ''
         }
@@ -58,8 +60,8 @@ const Form = (props) => {
             error.city = 'City is required field'
             isError = true;
         }
-        if (formValue.addess.length < 1) {
-            error.addess = 'Address is required field'
+        if (formValue.address.length < 1) {
+            error.address = 'Address is required field'
             isError = true;
         }
         if (formValue.zip.length < 1) {
@@ -76,6 +78,26 @@ const Form = (props) => {
 
     const save = async (event) => {
         event.preventDefault();
+        if (await validData()) {
+            console.log('error', formValue);
+            return;
+        }
+
+        let object = {
+            name: formValue.name,
+            phoneNumber: formValue.phoneNumber,
+            city: formValue.city,
+            state: formValue.state,
+            address: formValue.address,
+            id: '',
+            zip: formValue.zip,
+        }
+
+        addressbookService.addContact(object).then(data => {
+            console.log("Contact added");
+        }).catch(error => {
+            console.log("Error while adding");
+        })
     }
 
     const reset = () => {
@@ -115,8 +137,8 @@ const Form = (props) => {
                     <div className="row-content">
                         <div className="text-row">
                             <label className="label text" htmlFor="address">Address</label>
-                            <textarea id="address" className="input" name="address" placeholder="" style={{ height: '100px' }} value={formValue.addess} onChange={changeValue}></textarea>
-                            <div className="error">{formValue.error.addess}</div>
+                            <textarea id="address" className="input" name="address" placeholder="" style={{ height: '100px' }} value={formValue.address} onChange={changeValue}></textarea>
+                            <div className="error">{formValue.error.address}</div>
                         </div>
                     </div>
                     <div className="row-content location-row">
