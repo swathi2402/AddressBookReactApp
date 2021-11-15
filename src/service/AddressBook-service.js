@@ -12,4 +12,8 @@ export default class AddressBookService {
     getAllContacts() {
         return AxiosService.getService(`${this.baseUrl}AddressBook`);
     }
+
+    deleteContact(id) {
+        return AxiosService.deleteService(`${this.baseUrl}AddressBook/${id}`);
+    }
 } 
