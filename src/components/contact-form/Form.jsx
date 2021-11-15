@@ -32,6 +32,8 @@ const Form = (props) => {
     }
 
     const [formValue, setForm] = useState(initialValue);
+    const [displayMeassage, setDisplayMessage] = useState("");
+
     const addressbookService = new AddressBookService();
 
     const changeValue = (event) => {
@@ -95,8 +97,16 @@ const Form = (props) => {
 
         addressbookService.addContact(object).then(data => {
             console.log("Contact added");
+            setDisplayMessage("Contact Added Successfully");
+            setTimeout(() => {
+                setDisplayMessage("");
+            }, 3000);
         }).catch(error => {
             console.log("Error while adding");
+            setDisplayMessage("Error while adding contact");
+            setTimeout(() => {
+                setDisplayMessage("");
+            }, 3000);
         })
     }
 
@@ -174,6 +184,9 @@ const Form = (props) => {
                     <div className="buttonParent">
                         <button type="submit" className="button submitButton" id="addButton" >{formValue.isUpdate ? 'Update' : 'Submit'}</button>
                         <button type="reset" onClick={reset} className="button resetButton">Reset</button>
+                    </div>
+                    <div className="displaymessage">
+                        {displayMeassage}
                     </div>
                 </form>
             </div>

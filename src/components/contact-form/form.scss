@@ -132,7 +132,7 @@
             display: flex;
             padding: 0px 100px;
             flex-direction: row;
-            margin-bottom: 60px;
+            margin-bottom: 20px;
             justify-content: flex-end;
             margin-top: 20px;
         }
@@ -203,5 +203,11 @@
     }
 }
 
-
+.displaymessage {
+    color: red;
+    text-align: center;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: larger;
+} 
 
