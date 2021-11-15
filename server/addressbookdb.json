@@ -3,29 +3,20 @@
     {
       "name": "Poornima",
       "phoneNumber": "+919900990099",
-      "address": "Fgdt ehhd",
       "city": "Chennai",
       "state": "Tamil Nadu",
-      "zip": "445566",
-      "id": "hRdK1vJ"
+      "address": "Fgdt ehhd",
+      "id": "hRdK1vJ",
+      "zip": "444444"
     },
     {
-      "name": "sss",
+      "name": "SSS",
       "phoneNumber": "4445556665",
       "city": "Chennai",
       "state": "Telengana",
       "address": "eee ttt ttt",
       "id": "OrwT7dK",
-      "zip": "555444"
-    },
-    {
-      "name": "Swathi",
-      "phoneNumber": "9900990099",
-      "city": "Hyderabad",
-      "state": "Telengana",
-      "address": "sss ddd fff",
-      "id": "Uxs0niC",
-      "zip": "556677"
+      "zip": "999999"
     },
     {
       "name": "Swathi",

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams  } from 'react-router-dom';
+import { Link, useParams, withRouter } from 'react-router-dom';
 import './form.scss';
 import logo from '../../assets/logo.png';
 import CancelButton from '../../assets/cancel.png'
@@ -55,7 +55,7 @@ const Form = (props) => {
 
     const setData = (object) => {
         setForm({
-            ...formValue, ...object, isUpdate: true, 
+            ...formValue, ...object, isUpdate: true,
         });
     };
 
@@ -118,19 +118,39 @@ const Form = (props) => {
             zip: formValue.zip,
         }
 
-        addressbookService.addContact(object).then(data => {
-            console.log("Contact added");
-            setDisplayMessage("Contact Added Successfully");
-            setTimeout(() => {
-                setDisplayMessage("");
-            }, 3000);
-        }).catch(error => {
-            console.log("Error while adding");
-            setDisplayMessage("Error while adding contact");
-            setTimeout(() => {
-                setDisplayMessage("");
-            }, 3000);
-        })
+        if (formValue.isUpdate) {
+            addressbookService.updateContact(object, params.id).then((data) => {
+                setDisplayMessage("Contact Updated Successfully");
+                console.log("Data after update", data);
+                reset();
+                setTimeout(() => {
+                    setDisplayMessage("");
+                    props.history.push("");
+                }, 3000);
+            }).catch((error) => {
+                setDisplayMessage("Error while updating contact");
+                console.log("Error while updating", error);
+                setTimeout(() => {
+                    setDisplayMessage("");
+                }, 3000);
+            });
+        } else {
+            addressbookService.addContact(object).then((data) => {
+                setDisplayMessage("Contact Added Successfully");
+                console.log("Data added");
+                reset();
+                setTimeout(() => {
+                    setDisplayMessage("");
+                    props.history.push("");
+                }, 3000);
+            }).catch((error) => {
+                setDisplayMessage("Error while adding contact");
+                console.log("Error while adding employee");
+                setTimeout(() => {
+                    setDisplayMessage("");
+                }, 3000);
+            });
+        }
     }
 
     const reset = () => {
@@ -217,4 +237,4 @@ const Form = (props) => {
     )
 }
 
-export default Form;
+export default withRouter(Form);
