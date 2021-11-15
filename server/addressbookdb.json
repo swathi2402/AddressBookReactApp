@@ -1,15 +1,6 @@
 {
   "AddressBook": [
     {
-      "address": "Navunda Ind",
-      "city": "Bangalore",
-      "id": "3",
-      "name": "Swathi",
-      "phoneNumber": "+919988776600",
-      "state": "Karnataka",
-      "zip": "554433"
-    },
-    {
       "name": "Poornima",
       "phoneNumber": "+919900990099",
       "address": "Fgdt ehhd",
@@ -107,24 +98,6 @@
       "address": "sss ddd fff",
       "id": "cUlqIA_",
       "zip": "556677"
-    },
-    {
-      "name": "ww",
-      "phoneNumber": "33",
-      "city": "Chennai",
-      "state": "Telengana",
-      "address": "33",
-      "id": "0VQpDfk",
-      "zip": "333"
-    },
-    {
-      "name": "ww",
-      "phoneNumber": "33",
-      "city": "Chennai",
-      "state": "Telengana",
-      "address": "33",
-      "id": "VvqEE3y",
-      "zip": "333"
     }
   ]
 }
