@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 import './display.scss';
 import deleteIcon from '../../assets/delete-black-18dp.svg';
 import editIcon from '../../assets/create-black-18dp.svg';
@@ -40,7 +41,7 @@ const Display = (props) => {
                             <td>{elememt.phoneNumber}</td>
                             <td>
                                 <img onClick={() => remove(elememt.id)} alt="delete" src={deleteIcon} />
-                                <img alt="edit" src={editIcon} />
+                                <Link to={`/add/${elememt.id}`} > <img src={editIcon} alt="edit" /> </Link>
                             </td>
                         </tr>
                     ))
