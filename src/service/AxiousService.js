@@ -12,6 +12,10 @@ class AxiosService {
     deleteService(url = '', tokenRequired = false, httpOptions = null) {
         return axios.delete(url, tokenRequired && httpOptions);
     }
+
+    putService(url = '', payload = null, tokenRequired = false, httpOptions = null) {
+        return axios.put(url, payload, tokenRequired && httpOptions);
+    }
 }
 
 module.exports = new AxiosService()

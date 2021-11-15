@@ -20,4 +20,8 @@ export default class AddressBookService {
     deleteContact(id) {
         return AxiosService.deleteService(`${this.baseUrl}AddressBook/${id}`);
     }
+
+    updateContact(data, id) {
+        return AxiosService.putService(`${this.baseUrl}AddressBook/${id}`, data);
+    }
 } 
