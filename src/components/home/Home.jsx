@@ -4,6 +4,7 @@ import logo from '../../assets/logo.png';
 import addIcon from '../../assets/add-24px.svg';
 import './home.scss';
 import AddressBookService from "../../service/AddressBook-service";
+import Display from '../display/Display';
 
 class Home extends React.Component {
 
@@ -15,12 +16,16 @@ class Home extends React.Component {
         }
     }
 
+    componentDidMount() {
+        this.getAllContacts();
+      }
+
     addressBookService = new AddressBookService();
 
     getAllContacts = () => {
         this.addressBookService.getAllContacts().then(data => {
-            console.log("Data after get ", data.data);
             this.setState({ contactArray: data.data })
+            console.log("Data after get ", data.data);
         }).catch(error => {
             console.log("Error after ", error);
         })
@@ -46,7 +51,7 @@ class Home extends React.Component {
                         <Link to="/add" className="add-button flex-row-center"><img src={addIcon} alt="" />Add Person</Link>
                     </div>
                     <div className="table-main">
-                        <Display contactArray={this.contactArray} />
+                        <Display contactArray={this.state.contactArray} />
                     </div>
                 </div>
             </div>
