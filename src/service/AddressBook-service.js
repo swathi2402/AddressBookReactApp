@@ -13,14 +13,14 @@ export default class AddressBookService {
     }
 
     getContact(id) {
-        return axios.get(`${baseUrl}addressBook/get/${id}`);
+        return axios.get(`${baseUrl}addressbook/get/${id}`);
     }
 
     deleteContact(id) {
-        return axios.delete(`${baseUrl}addressBook/delete/${id}`);
+        return axios.delete(`${baseUrl}addressbook/delete/${id}`);
     }
 
     updateContact(data, id) {
-        return axios.put(`${baseUrl}addressBook/update/${id}`, data);
+        return axios.put(`${baseUrl}addressbook/update/${id}`, data);
     }
 }
