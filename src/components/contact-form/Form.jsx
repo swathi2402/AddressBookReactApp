@@ -6,6 +6,7 @@ import CancelButton from '../../assets/cancel.png'
 import AddressBookService from "../../service/AddressBook-service";
 
 const Form = (props) => {
+
     let initialValue = {
         name: '',
         allCity: [
@@ -45,8 +46,8 @@ const Form = (props) => {
 
     const getDataById = (id) => {
         addressbookService.getContact(id).then((data) => {
-            console.log("Data is ", data.data);
-            let object = data.data;
+            console.log("Data is ", data);
+            let object = data.data.data;
             setData(object);
         }).catch((error) => {
             console.log("Error is ", error);
@@ -137,7 +138,7 @@ const Form = (props) => {
         } else {
             addressbookService.addContact(object).then((data) => {
                 setDisplayMessage("Contact Added Successfully");
-                console.log("Data added");
+                console.log("Data added: ", data.data);
                 reset();
                 setTimeout(() => {
                     setDisplayMessage("");
@@ -154,7 +155,7 @@ const Form = (props) => {
     }
 
     const reset = () => {
-        setForm({ ...initialValue, id: formValue.id, isUpdate: formValue.isUpdate });
+        setForm({ ...initialValue, id: formValue.id, isUpdate: formValue.isUpdate, city: '', state: 'none' });
         console.log(formValue);
     }
 
@@ -174,7 +175,7 @@ const Form = (props) => {
                     <div className="form-head">
                         <h1 className="form-head-title">Person Address Form</h1>
                         <Link to="">
-                            <img src={CancelButton} className="close-button" />
+                            <img src={CancelButton} className="close-button" alt="cancel" />
                         </Link>
                     </div>
                     <div className="row-content">
@@ -198,20 +199,20 @@ const Form = (props) => {
                         <div>
                             <label className="label text" htmlFor="city">City</label>
                             <select value={formValue.city} onChange={changeValue} id="city" name="city">
-                                <option value="none" selected disabled hidden>Select City</option>
+                                <option value="" disabled>Select City</option>
                                 <option value="Bangalore">Bangalore</option>
                                 <option value="Chennai">Chennai</option>
                                 <option value="Hyderabad">Hyderabad</option>
-                                <option value="Chennai">Maduri</option>
-                                <option value="Bangalore">Udupi</option>
-                                <option value="Hyderabad">Vijayawada</option>
+                                <option value="Maduri">Maduri</option>
+                                <option value="Udupi">Udupi</option>
+                                <option value="Vijayawada">Vijayawada</option>
                             </select>
                             <div className="error">{formValue.error.city}</div>
                         </div>
                         <div>
                             <label className="label text" htmlFor="state">State</label>
                             <select value={formValue.state} onChange={changeValue} id="state" name="state">
-                                <option value="none" selected disabled hidden>Select State</option>
+                                <option value="" disabled>Select State</option>
                                 <option value="Karnataka">Karnataka</option>
                                 <option value="Telengana">Telengana</option>
                                 <option value="Tamilnadu">Tamil Nadu</option>

@@ -15,7 +15,7 @@ const Display = (props) => {
         }).catch(error => {
             console.log("Error after ", error);
         })
-        window.location.reload("/");
+        // window.location.reload("/");
     }
 
     return (
@@ -40,8 +40,8 @@ const Display = (props) => {
                             <td>{elememt.zip}</td>
                             <td>{elememt.phoneNumber}</td>
                             <td>
-                                <img onClick={() => remove(elememt.id)} alt="delete" src={deleteIcon} />
-                                <Link to={`/add/${elememt.id}`} > <img src={editIcon} alt="edit" /> </Link>
+                                <img onClick={() => remove(elememt.contactId)} alt="delete" src={deleteIcon} />
+                                <Link to={`/add/${elememt.contactId}`} > <img src={editIcon} alt="edit" /> </Link>
                             </td>
                         </tr>
                     ))

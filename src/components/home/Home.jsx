@@ -24,8 +24,8 @@ class Home extends React.Component {
 
     getAllContacts = () => {
         this.addressBookService.getAllContacts().then(data => {
-            this.setState({ contactArray: data.data })
-            console.log("Data after get ", data.data);
+            this.setState({ contactArray: data.data.data })
+            console.log("Data after get ", data.data.data);
         }).catch(error => {
             console.log("Error after ", error);
         })
