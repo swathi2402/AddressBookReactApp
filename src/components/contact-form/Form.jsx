@@ -9,18 +9,12 @@ const Form = (props) => {
 
     let initialValue = {
         name: '',
-        allCity: [
-            'Bangalore', 'Chennai', 'Hyderabad', 'Maduri', 'Udupi', 'Vijayawada'
-        ],
-        allstates: [
-            'Karnataka', 'Telengana', 'Tamilnadu'
-        ],
         city: '',
         state: '',
         address: '',
         zip: '',
         phoneNumber: '',
-        id: '',
+        contactId: '',
         isUpdate: false,
         error: {
             name: '',
@@ -46,7 +40,7 @@ const Form = (props) => {
 
     const getDataById = (id) => {
         addressbookService.getContact(id).then((data) => {
-            console.log("Data is ", data);
+            console.log("Data is ", data.data.data);
             let object = data.data.data;
             setData(object);
         }).catch((error) => {
@@ -155,7 +149,7 @@ const Form = (props) => {
     }
 
     const reset = () => {
-        setForm({ ...initialValue, id: formValue.id, isUpdate: formValue.isUpdate, city: '', state: 'none' });
+        setForm({ ...initialValue, contactId: formValue.contactId, isUpdate: formValue.isUpdate, city: '', state: 'none' });
         console.log(formValue);
     }
 
@@ -226,7 +220,7 @@ const Form = (props) => {
                         </div>
                     </div>
                     <div className="buttonParent">
-                        <button type="submit" className="button submitButton" id="addButton" >{formValue.isUpdate ? 'Update' : 'Submit'}</button>
+                        <button type="submit" className="button submitButton" id="addButton" >{formValue.isUpdate ? 'Update' : 'Add'}</button>
                         <button type="reset" onClick={reset} className="button resetButton">Reset</button>
                     </div>
                     <div className="displaymessage">
