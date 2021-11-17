@@ -88,7 +88,7 @@ const Form = (props) => {
             error.zip = 'Zip code is Invalid!'
             isError = true;
         }
-        if (!formValue.phoneNumber.match('^([+]?[1-9][0-9])?[0-9]{10}$')){
+        if (!formValue.phoneNumber.match('^([+]?[1-9][0-9])?[0-9]{10}$')) {
             error.phoneNumber = 'Phone Number Invalid!'
             isError = true;
         }
