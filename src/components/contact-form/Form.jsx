@@ -68,28 +68,28 @@ const Form = (props) => {
             zip: '',
             phoneNumber: ''
         }
-        if (formValue.name.length < 1) {
-            error.name = 'Name is required field'
+        if (!formValue.name.match('^[A-Z]{1}[a-zA_Z\\s]{2,}$')) {
+            error.name = 'Name is Invalid!'
             isError = true;
         }
         if (formValue.state.length < 1) {
-            error.state = 'State is required field'
+            error.state = 'State is required field!'
             isError = true;
         }
         if (formValue.city.length < 1) {
-            error.city = 'City is required field'
+            error.city = 'City is required field!'
             isError = true;
         }
-        if (formValue.address.length < 1) {
-            error.address = 'Address is required field'
+        if (!formValue.address.match('([a-zA-Z]{3,}\\s?){2,}$')) {
+            error.address = 'Address is Invalid!'
             isError = true;
         }
-        if (formValue.zip.length < 1) {
-            error.zip = 'Zip code is required field'
+        if (!formValue.zip.match('^[0-9]{3}\\s{0,1}[0-9]{3}$')) {
+            error.zip = 'Zip code is Invalid!'
             isError = true;
         }
-        if (formValue.phoneNumber.length < 1) {
-            error.phoneNumber = 'Phone Number is required field'
+        if (!formValue.phoneNumber.match('^([+]?[1-9][0-9])?[0-9]{10}$')){
+            error.phoneNumber = 'Phone Number Invalid!'
             isError = true;
         }
         await setForm({ ...formValue, error: error })
@@ -149,7 +149,7 @@ const Form = (props) => {
     }
 
     const reset = () => {
-        setForm({ ...initialValue, contactId: formValue.contactId, isUpdate: formValue.isUpdate, city: '', state: 'none' });
+        setForm({ ...initialValue, contactId: formValue.contactId, isUpdate: formValue.isUpdate, city: '', state: '' });
         console.log(formValue);
     }
 
@@ -215,7 +215,7 @@ const Form = (props) => {
                         </div>
                         <div>
                             <label className="label text" htmlFor="zip">Zip Code</label>
-                            <input className="input" type="text" id="zip" name="zip" onChange={changeValue} />
+                            <input className="input" type="text" id="zip" name="zip" value={formValue.zip} onChange={changeValue} />
                             <div className="error">{formValue.error.zip}</div>
                         </div>
                     </div>

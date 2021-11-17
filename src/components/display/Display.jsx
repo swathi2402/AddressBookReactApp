@@ -15,7 +15,7 @@ const Display = (props) => {
         }).catch(error => {
             console.log("Error after ", error);
         })
-        // window.location.reload("/");
+        window.location.reload("/");
     }
 
     return (
