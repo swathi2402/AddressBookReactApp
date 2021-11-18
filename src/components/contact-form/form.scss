@@ -181,10 +181,20 @@
             background: #008cff;
             color: white;
         }
+
+        .submitButton:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
         
         .resetButton:hover {
             background: #969696;
             color: white;
+        }
+
+        .resetButton:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
         }
         .error {
             font-size: 12px;
