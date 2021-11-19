@@ -55,7 +55,7 @@ const Form = (props) => {
             setResetDisable(false);
         }
     }, [resetDisable]);
-    
+
     const getDataById = (id) => {
         addressbookService.getContact(id).then((data) => {
             console.log("Data is ", data.data.data);
@@ -65,22 +65,22 @@ const Form = (props) => {
             console.log("Error is ", error);
         });
     };
-    
+
     const setData = (object) => {
         setForm({
             ...formValue, ...object, isUpdate: true,
         });
     };
-    
+
     const changeValue = (event) => {
         setDisable(!disable);
         setResetDisable(!resetDisable);
         setForm({ ...formValue, [event.target.name]: event.target.value })
     }
-    
+
     const emptyForm = () => {
         let isEmpty = false;
-        
+
         if (formValue.name === "" && formValue.state === "" && formValue.city === "" && formValue.address === "" && formValue.zip === "" && formValue.phoneNumber === "") {
             isEmpty = true;
         }
@@ -171,8 +171,8 @@ const Form = (props) => {
                     props.history.push("");
                 }, 3000);
             }).catch((error) => {
-                setDisplayMessage("Error while updating contact");
-                console.log("Error while updating", error);
+                setDisplayMessage(error.response.data.data);
+                console.log("Error while updating", error.response.data.data);
                 setTimeout(() => {
                     setDisplayMessage("");
                 }, 3000);
@@ -197,7 +197,7 @@ const Form = (props) => {
     }
 
     const reset = () => {
-        setForm({ ...initialValue, contactId: formValue.contactId, isUpdate: formValue.isUpdate, city: '', state: '' });
+        setForm({ ...initialValue, contactId: formValue.contactId, isUpdate: formValue.isUpdate });
         console.log(formValue);
     }
 
