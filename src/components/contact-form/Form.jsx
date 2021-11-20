@@ -27,7 +27,8 @@ const Form = (props) => {
     }
 
     const [formValue, setForm] = useState(initialValue);
-    const [displayMeassage, setDisplayMessage] = useState("");
+    const [displayMessageSuccess, setDisplayMessageSuccess] = useState("");
+    const [displayMessageError, setDisplayMessageError] = useState("");
     const [disable, setDisable] = useState(true);
     const [resetDisable, setResetDisable] = useState(true);
     const params = useParams();
@@ -35,10 +36,12 @@ const Form = (props) => {
     const addressbookService = new AddressBookService();
 
     useEffect(() => {
-
         if (params.id) {
             getDataById(params.id);
         }
+    }, []);
+
+    useEffect(() => {
 
         if (!validData()) {
             setDisable(false);
@@ -160,37 +163,37 @@ const Form = (props) => {
 
         if (formValue.isUpdate) {
             addressbookService.updateContact(object, params.id).then((data) => {
-                setDisplayMessage("Contact Updated Successfully");
+                setDisplayMessageSuccess("Contact Updated Successfully");
                 console.log("Data after update", data);
                 reset();
                 setTimeout(() => {
-                    setDisplayMessage("");
+                    setDisplayMessageSuccess("");
                     props.history.push("");
                 }, 3000);
             }).catch((error) => {
                 formValue.error.phoneNumber = error.response.data.data;
-                setForm({ ...formValue})
-                setDisplayMessage("Error while Updating Contact");
+                setForm({ ...formValue })
+                setDisplayMessageError("Error while Updating Contact");
                 setTimeout(() => {
-                    setDisplayMessage("");
+                    setDisplayMessageError("");
                 }, 3000);
             });
         } else {
             addressbookService.addContact(object).then((data) => {
-                setDisplayMessage("Contact Added Successfully");
+                setDisplayMessageSuccess("Contact Added Successfully");
                 console.log("Data added: ", data.data);
                 reset();
                 setTimeout(() => {
-                    setDisplayMessage("");
+                    setDisplayMessageSuccess("");
                     props.history.push("");
                 }, 3000);
             }).catch((error) => {
                 formValue.error.phoneNumber = error.response.data.data;
-                setForm({ ...formValue})
-                setDisplayMessage("Error while Adding Contact");
+                setForm({ ...formValue })
+                setDisplayMessageError("Error while Adding Contact");
                 console.log("Error while Adding Contact");
                 setTimeout(() => {
-                    setDisplayMessage("");
+                    setDisplayMessageError("");
                 }, 3000);
             });
         }
@@ -271,8 +274,11 @@ const Form = (props) => {
                         <button type="submit" className="button submitButton" id="addButton" disabled={disable}>{formValue.isUpdate ? 'Update' : 'Add'}</button>
                         <button type="reset" onClick={reset} className="button resetButton" disabled={resetDisable}>Reset</button>
                     </div>
-                    <div className="displaymessage">
-                        {displayMeassage}
+                    <div className="displaymessage-success">
+                        {displayMessageSuccess}
+                    </div>
+                    <div className="displaymessage-error">
+                        {displayMessageError}
                     </div>
                 </form>
             </div>

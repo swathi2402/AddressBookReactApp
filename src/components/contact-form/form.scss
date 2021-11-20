@@ -228,8 +228,16 @@
     }
 }
 
-.displaymessage {
+.displaymessage-error {
     color: red;
+    text-align: center;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: larger;
+} 
+
+.displaymessage-success {
+    color: green;
     text-align: center;
     align-items: center;
     margin-bottom: 20px;
