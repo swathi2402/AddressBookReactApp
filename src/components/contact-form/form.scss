@@ -236,3 +236,48 @@
     font-size: larger;
 } 
 
+@media only screen and (max-width: 600px) {
+    .main .form-content .location-row {
+        flex-direction:column;
+        margin-bottom: 25px;
+    }
+
+    .main .form-content .location-row div:nth-of-type(2) {
+        margin: 0px 0px;
+    }
+
+    .main .form-content .submitButton {
+        margin-top:20px;
+    }
+
+    .main .form-content .resetButton {
+        margin-top: 15px;
+    }
+
+    .main .form-content .submitButton:disabled {
+        margin-top:20px;
+    }
+
+    .main .form-content .resetButton:disabled {
+        margin-top: 15px;
+    }
+
+    .main .form-content .button {
+        margin:auto;
+    }
+
+    .main .form-content .buttonParent {
+        flex-direction:column;
+    }
+    
+    .main .form-content .close-button {
+        width: 3vh;
+        margin: 1vh 1vh;
+    }
+      
+    .main .form-content .form {
+        width: 90%;
+    }
+       
+}
+

@@ -171,8 +171,9 @@ const Form = (props) => {
                     props.history.push("");
                 }, 3000);
             }).catch((error) => {
-                setDisplayMessage(error.response.data.data);
-                console.log("Error while updating", error.response.data.data);
+                formValue.error.phoneNumber = error.response.data.data;
+                setForm({ ...formValue})
+                setDisplayMessage("Error while Updating Contact");
                 setTimeout(() => {
                     setDisplayMessage("");
                 }, 3000);
@@ -187,8 +188,10 @@ const Form = (props) => {
                     props.history.push("");
                 }, 3000);
             }).catch((error) => {
-                setDisplayMessage("Error while adding contact");
-                console.log("Error while adding employee");
+                formValue.error.phoneNumber = error.response.data.data;
+                setForm({ ...formValue})
+                setDisplayMessage("Error while Adding Contact");
+                console.log("Error while Adding Contact");
                 setTimeout(() => {
                     setDisplayMessage("");
                 }, 3000);
