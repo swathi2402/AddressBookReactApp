@@ -206,7 +206,7 @@ const Form = (props) => {
 
     return (
         <div className="main">
-            <header className="header-content header">
+            <header className="header-content">
                 <div className="logo-content">
                     <img src={logo} alt="" />
                     <div>
@@ -224,25 +224,25 @@ const Form = (props) => {
                         </Link>
                     </div>
                     <div className="row-content">
-                        <label className="label text" htmlFor="name">Name</label>
+                        <label htmlFor="name">Name</label>
                         <input className="input" type="text" id="name" name="name" placeholder="" value={formValue.name} onChange={changeValue} />
                         <div className="error">{formValue.error.name}</div>
                     </div>
                     <div className="row-content">
-                        <label className="label text" htmlFor="phoneNumber">Phone Number</label>
+                        <label htmlFor="phoneNumber">Phone Number</label>
                         <input className="input" type="tel" id="phoneNumber" name="phoneNumber" value={formValue.phoneNumber} onChange={changeValue} />
                         <div className="error">{formValue.error.phoneNumber}</div>
                     </div>
                     <div className="row-content">
                         <div className="text-row">
-                            <label className="label text" htmlFor="address">Address</label>
+                            <label htmlFor="address">Address</label>
                             <textarea id="address" className="input" name="address" placeholder="" style={{ height: '100px' }} value={formValue.address} onChange={changeValue}></textarea>
                             <div className="error">{formValue.error.address}</div>
                         </div>
                     </div>
                     <div className="row-content location-row">
                         <div>
-                            <label className="label text" htmlFor="city">City</label>
+                            <label htmlFor="city">City</label>
                             <select value={formValue.city} onChange={changeValue} id="city" name="city">
                                 <option>Select City</option>
                                 <option value="Bangalore">Bangalore</option>
@@ -255,7 +255,7 @@ const Form = (props) => {
                             <div className="error">{formValue.error.city}</div>
                         </div>
                         <div>
-                            <label className="label text" htmlFor="state">State</label>
+                            <label htmlFor="state">State</label>
                             <select value={formValue.state} onChange={changeValue} id="state" name="state">
                                 <option>Select State</option>
                                 <option value="Karnataka">Karnataka</option>
@@ -265,7 +265,7 @@ const Form = (props) => {
                             <div className="error">{formValue.error.state}</div>
                         </div>
                         <div>
-                            <label className="label text" htmlFor="zip">Zip Code</label>
+                            <label htmlFor="zip">Zip Code</label>
                             <input className="input" type="text" id="zip" name="zip" value={formValue.zip} onChange={changeValue} />
                             <div className="error">{formValue.error.zip}</div>
                         </div>
@@ -274,12 +274,8 @@ const Form = (props) => {
                         <button type="submit" className="button submitButton" id="addButton" disabled={disable}>{formValue.isUpdate ? 'Update' : 'Add'}</button>
                         <button type="reset" onClick={reset} className="button resetButton" disabled={resetDisable}>Reset</button>
                     </div>
-                    <div className="displaymessage-success">
-                        {displayMessageSuccess}
-                    </div>
-                    <div className="displaymessage-error">
-                        {displayMessageError}
-                    </div>
+                    <div className="displaymessage-success">{displayMessageSuccess}</div>
+                    <div className="displaymessage-error">{displayMessageError}</div>
                 </form>
             </div>
         </div>
