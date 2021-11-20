@@ -35,26 +35,23 @@ const Form = (props) => {
     const addressbookService = new AddressBookService();
 
     useEffect(() => {
+
         if (params.id) {
             getDataById(params.id);
         }
-    }, []);
 
-    useEffect(() => {
         if (!validData()) {
             setDisable(false);
         } else {
             setDisable(true);
         }
-    }, [disable]);
 
-    useEffect(() => {
         if (emptyForm()) {
             setResetDisable(true);
         } else {
             setResetDisable(false);
         }
-    }, [resetDisable]);
+    }, [disable, resetDisable]);
 
     const getDataById = (id) => {
         addressbookService.getContact(id).then((data) => {
